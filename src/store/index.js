@@ -8,18 +8,13 @@ export default new Vuex.Store({
   state: {
     xrdata:[],
     count: '',
-    updata: {
-      name: '',
-      age: '',
-      id: ''
-    }
   },
   mutations: {
     //页面刷新数据
     'oppdata' (state, action) {
       state.xrdata = action
-     
     },
+    //显示页面多少条数据
     'oppdatacount' (state, action) {
       state.count = action
     },
@@ -50,16 +45,18 @@ export default new Vuex.Store({
     },
     //添加数据
     'adddata' (context, action) {
-      axios.post('http://api.baxiaobu.com/index.php/home/v5/add',qs.stringify(action))
-        .then((res) => {
-          this.commit('adddata',res.data.users) 
+      axios.post('http://api.baxiaobu.com/index.php/home/v5/add',
+        qs.stringify(action))
+          .then((res) => {
+            this.commit('adddata',res.data.users) 
         })
     },
     //删除
     'deldata' (context, action) {
-      axios.post(`http://api.baxiaobu.com/index.php/home/v5/deleteUser`,qs.stringify({id:action}))
-        .then((res) => {
-          this.commit('delededata',res.data.users) 
+      axios.post(`http://api.baxiaobu.com/index.php/home/v5/deleteUser`,
+        qs.stringify({id:action}))
+          .then((res) => {
+            this.commit('delededata',res.data.users) 
         })
     },
     //搜索
@@ -72,9 +69,10 @@ export default new Vuex.Store({
     },
     //修改
     'updata' (context, action) {
-      axios.post('http://api.baxiaobu.com/index.php/home/v5/updateUser',qs.stringify(action))
-        .then((res) => {
-          console.log(res)
+      axios.post('http://api.baxiaobu.com/index.php/home/v5/updateUser',
+        qs.stringify(action))
+          .then((res) => {
+            console.log(res)
         })
     }
   }
