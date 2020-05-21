@@ -7,6 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     xrdata:[],
+    count: '',
     updata: {
       name: '',
       age: '',
@@ -17,6 +18,10 @@ export default new Vuex.Store({
     //页面刷新数据
     'oppdata' (state, action) {
       state.xrdata = action
+     
+    },
+    'oppdatacount' (state, action) {
+      state.count = action
     },
     //搜索
     'Sdata' (state, action) {
@@ -39,8 +44,8 @@ export default new Vuex.Store({
     'xrdata' () {
       axios.get('http://api.baxiaobu.com/index.php/home/v5/getuser')
         .then((res) => {
-          console.log(res.data.users)
           this.commit('oppdata',res.data.users)
+          this.commit('oppdatacount',res.data.users.length)
         })
     },
     //添加数据

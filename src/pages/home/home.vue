@@ -87,7 +87,6 @@ import { mapState } from "vuex"
 export default {
  	data () {
  		return{
-             count: 0,
              dialogVisible: false,
              dialogVisible1: false,
              add: {
@@ -129,6 +128,8 @@ export default {
           this.$store.dispatch('adddata',this.add)
           this.dialogVisible=false
           this.$store.dispatch('xrdata')
+          this.add.name = ""
+          this.add.age = ""
       },
       //搜索
       searchdata () {
@@ -146,10 +147,11 @@ export default {
       }
     },
     computed: {
-        ...mapState(['xrdata'])
+        ...mapState(['xrdata','count'])
     },
     created () {
         this.$store.dispatch('xrdata')
-    }
+    },
+    
 }
 </script>
